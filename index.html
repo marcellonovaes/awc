@@ -1,0 +1,38 @@
+<html>
+	<head>
+        	<meta charset="utf-8">
+        	<title>Animated Word Cloud</title>
+        	<meta name="viewport" content="width=device-width, initial-scale=1">
+        	<link rel="stylesheet" href="css/awc.css">
+		<script src="data/input.js"></script>
+		<script src="js/awc.js"></script>
+    	</head>
+<body>
+	<div class="info" align="center">
+		<label class="lbGroup" id="group"></label>
+		<label  class = "lbYear" id="year"></label>
+	</div>
+	<div class="btBar">
+		<ul>
+			<li><select name="yearTo" class="yearTo" id="yearTo" onchange="javascript:goTo()"></select></li>
+			<li><select name="lab" class="lab" id="lab" onchange="javascript:changeGroup()">
+				<option value="0">LPRM</option>
+				<option value="1">LABOTIM</option>
+				<option value="2">LCAD</option>
+				<option value="3">LIED</option>
+				<option value="4">LABIC</option>
+			</select></li>
+			<li><button class="playpause" id="pause" onclick="javascript:pause();"><img class="bt" src="img/playpause.png"></button></li>
+			<li><button class="playpause" id="play" onclick="javascript:play();"><img class="bt" src="img/playpause.png"></button></li>
+		</ul>
+	</div>
+
+		<ul id="words" class="words">
+
+		</ul>
+
+
+
+</body>
+
+		
