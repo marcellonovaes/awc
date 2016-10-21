@@ -17,6 +17,7 @@ var index=0;
 var max = 1;
 var groupTo;
 var maxFontSize = 100;
+var flagPause = false;
 
 function load(){
 	count = 0;
@@ -126,8 +127,6 @@ function printKeywords(){
 
 function play(){
 	cleanHint();
-	btPause.style.display="block";
-	btPlay.style.display="none";
 
 	timer = setInterval(function() {
 		if(count == years.length) count = 0;
@@ -136,9 +135,16 @@ function play(){
 }
 
 function pause(){
-	btPause.style.display="none";
-	btPlay.style.display="block";
 	clearInterval(timer);
+}
+
+function playPause(){
+	if(flagPause){
+		play();
+	}else{
+		pause();
+	}
+	flagPause = !flagPause;
 }
 
 function goTo(){
@@ -272,8 +278,7 @@ function changeGroup(){
 }
 
 document.addEventListener( "DOMContentLoaded", function() {
- 	btPlay = document.getElementById("play");
- 	btPause = document.getElementById("pause");
+ 	btPlayPause = document.getElementById("playpause");
 	yearTo = document.getElementById("yearTo");
 	groupTo = document.getElementById("lab");
 	hint = document.createElement('iframe');
