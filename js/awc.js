@@ -5,7 +5,6 @@ var keywords = new Array();
 var papers = new Array();
 var items = new Array();
 var count = 0;
-var lbYear;
 var delay = 1000;
 var timer;
 var btPlay;
@@ -17,13 +16,12 @@ var colBreak = 30;
 var index=0;
 var max = 1;
 var groupTo;
+var maxFontSize = 100;
 
 function load(){
 	count = 0;
-	lbYear = document.getElementById("year");
-	lbYear.textContent = data[grp].iniYear;
 	lbGroup = document.getElementById("group");
-	lbGroup.textContent = data[grp].group;
+	//lbGroup.textContent = data[grp].group;
 
 	for(var y= data[grp].iniYear, i=0; y<= data[grp].endYear; y++,i++){
 		yearTo.options[yearTo.options.length]= new Option(y, y);
@@ -152,7 +150,18 @@ function goTo(){
 
 function plotYear(){
 
-	lbYear.textContent =  parseInt( data[grp].iniYear) + count;
+	document.getElementById("words").style.width = parseInt(document.getElementById("info").clientWidt)-30;
+
+	if(window.innerWidth < 650){
+		lbGroup.textContent = null;
+		maxFontSize = 50;
+	}else{
+		lbGroup.textContent = data[grp].group;
+		maxFontSize = 100;
+	}
+
+	yearTo.selectedIndex = count;
+	
 	count++;
 
 	var year = years[count-1];
@@ -166,7 +175,7 @@ function plotYear(){
 	for(var i=0; i<tags.length; i++){
 		var item = tags[i].li;
 		var weight = tags[i].weight;
-		var size = Math.ceil(100*weight / max);
+		var size = Math.ceil(maxFontSize*weight / max);
 		if(weight == 1) size =10;
 		item.style.fontSize = size;
 		var r = parseInt(item.getAttribute('row'))
@@ -174,8 +183,6 @@ function plotYear(){
 		item.style.color = Math.ceil(c/r) * parseInt(size,16)+130;
 	}
 }
-
-
 
 function showHint(tag){
 	pause();
@@ -195,7 +202,7 @@ function showHint(tag){
 	var h=50;
 	for(var i=0; i<papers.length; i++){
 		if(papers[i].keyword == tag){
-			h+=80;
+			h+=90;
 	html += "<ul>";
 			html += "<li>"+papers[i].title;
 			html += "<br><b><i>"+papers[i].author+"</i></b></li>";
@@ -204,14 +211,12 @@ function showHint(tag){
 	}
 	hint.style.height = h+"px";
 
+
 	var w = Math.ceil(0.3*window.innerWidth);
 	w+=tag.length*5;
 	hint.style.width = w+"px";
-  
-	hint.style.top = y+'px';
-	hint.style.left = x+'px';
 
-	fixHintPos();
+	fixHintPos(x,y,tag.length);
  
 	hint.contentWindow.document.open();
 	hint.contentWindow.document.write(html);
@@ -221,15 +226,20 @@ function showHint(tag){
 	hint.style.display = "block";
 }
 
-function fixHintPos(){
-	var mx = parseInt(event.clientX);     
-	var my = parseInt(event.clientY);   
+function fixHintPos(x,y,p){
+	
+	var mx = x;    
+	var my = y;  
 
-	var ww = parseInt(window.innerWidth)-10;
-	var wh = parseInt(window.innerHeight)-12;
+	var ww = parseInt(window.innerWidth)-20;
+	var wh = parseInt(window.innerHeight)-15;
 
 	var iw = parseInt(hint.contentWindow.innerWidth);
 	var ih = parseInt(hint.contentWindow.innerHeight);
+
+	if(iw == 0){
+		iw = Math.ceil(0.3*parseInt(window.innerWidth))+p*5;
+	}
 
 	var xr = true;
 	var yi = true;
@@ -241,8 +251,13 @@ function fixHintPos(){
 	var maxX = ww - iw;
 	var maxY = wh - ih;
 
-	if(!xr) hint.style.left = maxX + "px";
-	if(!yi) hint.style.top = maxY + "px";
+	if(!xr) 	x = maxX;
+
+	if(!yi) 	y = maxY;
+
+	hint.style.left = x + "px";
+	hint.style.top = y+'px';
+	
 }
 
 function cleanHint(){
