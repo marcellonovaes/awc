@@ -1,158 +1,38 @@
+<html>
+	<head>
+        	<meta charset="utf-8">
+        	<title>Animated Word Cloud</title>
+        	<meta name="viewport" content="width=device-width, initial-scale=1">
+        	<link rel="stylesheet" href="css/awc.css">
+		<script src="data/input.js"></script>
+		<script src="js/awc.js"></script>
+    	</head>
+<body>
+	<div class="info" id="info" align="center">
+		<label class="lbGroup" id="group"></label>
+	</div>
+	<div class="btBar" id="btBar">
+		<ul>
+			<li><select name="yearTo" class="yearTo" id="yearTo" onchange="javascript:goTo()"></select></li>
+			<li><select name="lab" class="lab" id="lab" onchange="javascript:changeGroup()">
+				<option value="0">LPRM</option>
+				<option value="1">LABOTIM</option>
+				<option value="2">LCAD</option>
+				<option value="3">LIED</option>
+				<option value="4">LABIC</option>
+			</select></li>
+			<li><button class="playpause" id="pause" onclick="javascript:pause();"><img class="bt" src="img/playpause.png"></button></li>
+			<li><button class="playpause" id="play" onclick="javascript:play();"><img class="bt" src="img/playpause.png"></button></li>
+		</ul>
+	</div>
 
-body {
-	background: #EEE;
-}
+		<ul id="words" class="words">
 
-.words {
-	display: table;
-	font-size: 0;
-	vertical-align: middle;
-    	margin: auto;
-    	padding: 10;
-	font-family: courier;
-	opacity:0.8;
-	position:absolute;
-	top:100px;
-	left:10px;
-	right:10px;
-}
-
-.wordsCanvas {
-	background: #FFF;
-	vertical-align: middle;
-    	margin: auto;
-    	padding: 10;
-	font-family: courier;
-	opacity:1;
-	position:absolute;
-	top:80px;
-	left:10px;
-	right:10px;
-	border:0px none #FFF;
-}
-
-ul {
-    	float:left;
-    	clear:right;
-    	padding:5px;
-	vertical-align: middle;
-    transform-origin: 50% 100%;
-    animation-duration: .3s;
-    animation-name: fadeAndScale;
-    animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
-}
-
-li {
-    	float:left;
-    	clear:left;
-	display:table-cell;
-	vertical-align: middle;
-    transform-origin: 50% 100%;
-    animation-duration: .3s;
-    animation-name: fadeAndScale;
-    animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
-}
-
-.info {
-	font-size: 30;
-	color: #FFF;
-	background: #000;
-}
-
-.hint {
-	background: #FFF;
-    	margin: 0 auto;
-	display: block;
-    	float:left;
-	position:relative;
-	width:30%;
-	height:30%;
-	top:0px;
-	left:0px;
-}
-
-.btBar {
-	position:absolute;
-	top:5px;
-	left:20px;
-	font-size: 30;
-}
-
-.playpause {
-	position:absolute;
-	top:12px;
-	left:5px;
-	background: #000;
-	height:50px;
-	width:50px;
-}
-.bt {
-	position:absolute;
-	top:0px;
-	left:0px;
-	background: #000;
-	height:50px;
-	width:50px;
-}
+		</ul>
 
 
-.yearTo {
-	position:absolute;
-	top:17px;
-	left:100px;
-	background: #FFF;
-	height:40px;
-	width:90px;
-	font-size: 15;
-}
 
-.lab {
-	position:absolute;
-	top:17px;
-	left:220px;
-	background: #FFF;
-	height:40px;
-	width:90px;
-	font-size: 15;
-}
+</body>
 
-.info {
-	position:absolute;
-	top:5px;
-	left:10px;
-	right:10px;
-	background: #000;
-	height:75px;
-	font-size: 30;
-}
-
-.lbGroup {
-	position:absolute;
-	top:5px;
-	left:310px;
-	right:10px;
-	font-size: 30;
-}
-
-.lbYear {
-	position:absolute;
-	top:40px;
-	left:310px;
-	right:10px;
-	font-size: 30;
-}
-
-
-@keyframes fadeAndScale {
-    from {
-        opacity: 0;
-        transform: scale(.9, .9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1, 1);
-    }
-}
-
-
+		
 
