@@ -148,6 +148,7 @@ function playPause(){
 }
 
 function goTo(){
+	flagPause = true;
 	pause();
 	cleanHint();
 	count = parseInt(yearTo.value) -  data[grp].iniYear;
@@ -186,7 +187,8 @@ function plotYear(){
 		item.style.fontSize = size;
 		var r = parseInt(item.getAttribute('row'))
 		var c = parseInt(item.getAttribute('col'));
-		item.style.color = Math.ceil(c/r) * parseInt(size,16)+130;
+		var color = parseInt(11*r + 29*c + size,16)+200;
+		item.style.color = color;
 	}
 }
 
