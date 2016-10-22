@@ -19,6 +19,9 @@ var groupTo;
 var maxFontSize = 100;
 var flagPause = false;
 var small = false;
+var lbGroup;
+var btPlayPause;
+var data;
 
 function load(){
 
@@ -30,10 +33,10 @@ function load(){
 
 
 	lbGroup = document.getElementById("group");
-	//lbGroup.textContent = data[grp].group;
 
+	yearTo.options = new Array();
 	for(var y= data[grp].iniYear, i=0; y<= data[grp].endYear; y++,i++){
-		yearTo.options[yearTo.options.length]= new Option(y, y);
+		yearTo.options[i]= new Option(y, y);
 		years[i] = {"keywords":new Array(), "papers":new Array()};
 	}
 
@@ -96,7 +99,7 @@ function load(){
 				}
 			}
 			if(f == 0){
-				for(z=0; z<items.length; z++){
+				for(var z=0; z<items.length; z++){
 					if(word == items[z].innerHTML){
 						years[i].keywords.push({"tag":word, "weight":1, "li":items[z]});
 					}
