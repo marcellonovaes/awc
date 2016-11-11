@@ -168,7 +168,7 @@ function goTo(){
 
 function plotYear(){
 
-	document.getElementById("words").style.width = parseInt(document.getElementById("info").clientWidt)-30;
+	document.getElementById("words").style.width = parseInt(document.getElementById("info").clientWidt)-50;
 
 	if(window.innerWidth < 650){
 		lbGroup.textContent = null;
@@ -178,7 +178,11 @@ function plotYear(){
 			if(window.innerWidth > 520){
 				document.getElementById("lab").style.width = window.innerWidth/2;
 			}else{
-				document.getElementById("lab").style.width = 90;
+				if(window.innerWidth > 320){
+					document.getElementById("lab").style.width = 90;
+				}else{
+					document.getElementById("lab").style.width = 68;
+				}
 			}
 		
 	}else{
