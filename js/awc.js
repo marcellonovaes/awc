@@ -172,11 +172,19 @@ function plotYear(){
 
 	if(window.innerWidth < 650){
 		lbGroup.textContent = null;
-		maxFontSize = 50;
+		maxFontSize = 30;
 		small = true;
+		
+			if(window.innerWidth > 520){
+				document.getElementById("lab").style.width = window.innerWidth/2;
+			}else{
+				document.getElementById("lab").style.width = 90;
+			}
+		
 	}else{
 		lbGroup.textContent = data[grp].group;
-		maxFontSize = 100;
+		document.getElementById("lab").style.width = 380;
+		maxFontSize = 50;
 		small = false;
 	}
 
